@@ -38,5 +38,9 @@ const initialTasks = [
     description:
       "Create a portfolio showcasing your skills and projects to potential employers",
     status: "done",
-  },
-];
+  }
+]
+
+if (!localStorage.getItem('tasks')) {
+  localStorage.setItem('tasks', JSON.stringify(sampleData));
+}

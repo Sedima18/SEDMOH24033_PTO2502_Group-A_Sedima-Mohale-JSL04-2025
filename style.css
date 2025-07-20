@@ -1,0 +1,235 @@
+/* ===== Reset and Global Styles ===== */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background-color: #f4f7fd;
+  color: #2b2c37;
+  display: flex;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* ===== Sidebar ===== */
+.side-bar {
+  width: 250px;
+  background-color: #ffffff;
+  border-right: 1px solid #e0e4eb;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+#side-logo-div {
+  text-align: center;
+}
+
+#logo {
+  width: 150px;
+}
+
+.boards-nav-links-div {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+#headline-sidepanel {
+  font-size: 0.85rem;
+  color: #888;
+  letter-spacing: 1px;
+}
+
+.board-btn {
+  padding: 0.75rem;
+  background-color: #e0e4eb;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+}
+
+.board-btn:hover {
+  background-color: #d2d6de;
+}
+
+/* ===== Layout ===== */
+#layout {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== Header ===== */
+.sticky-header {
+  background-color: #ffffff;
+  padding: 1rem 2rem;
+  border-bottom: 1px solid #e0e4eb;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo-mobile {
+  width: 32px;
+}
+
+/* ===== Main Content ===== */
+.container {
+  padding: 2rem;
+  overflow-x: auto;
+}
+
+.card-column-main {
+  display: flex;
+  gap: 2rem;
+  min-width: 1000px;
+}
+
+.column-div {
+  background-color: #f9fafc;
+  border-radius: 8px;
+  padding: 1rem;
+  min-width: 300px;
+  flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+}
+
+.column-head-div {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.columnHeader {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Dots */
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+#todo-dot {
+  background-color: #49c4e5;
+}
+
+#doing-dot {
+  background-color: #8471f2;
+}
+
+#done-dot {
+  background-color: #67e2ae;
+}
+
+/* ===== Tasks ===== */
+.tasks-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task-div {
+  background-color: #ffffff;
+  padding: 1rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.task-div:hover {
+  background-color: #f0f4ff;
+}
+
+/* ===== Modal ===== */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+.modal-content {
+  background-color: #ffffff;
+  margin: 10% auto;
+  padding: 2rem;
+  border: 1px solid #ccc;
+  width: 90%;
+  max-width: 400px;
+  border-radius: 10px;
+  position: relative;
+}
+
+.modal-content label {
+  display: block;
+  margin: 1rem 0 0.25rem;
+  font-weight: 600;
+}
+
+.modal-content input,
+.modal-content textarea,
+.modal-content select {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-family: inherit;
+}
+
+#save-task {
+  padding: 0.75rem 1.25rem;
+  background-color: #635fc7;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+#save-task:hover {
+  background-color: #514ac3;
+}
+
+.close {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
+  color: #333;
+  cursor: pointer;
+}
+
+.close:hover {
+  color: red;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .side-bar {
+    display: none;
+  }
+
+  .card-column-main {
+    flex-direction: column;
+    min-width: auto;
+  }
+}
