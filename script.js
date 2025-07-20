@@ -9,30 +9,43 @@ const modalDescription = document.getElementById('modal-description');
 const modalStatus = document.getElementById('modal-status');
 const saveBtn = document.getElementById('save-task');
 const closeModalBtn = document.getElementById('close-modal');
-const columns = document.querySelectorAll('.column-div');
 
 // ====== Render Tasks to Columns ======
 function renderTasks() {
-  document.querySelectorAll('.tasks-container').forEach(el => el.innerHTML = '');
+  // Clear all columns
+  document.querySelectorAll('.tasks-container').forEach(container => {
+    container.innerHTML = '';
+});
 
+  // Render each task
   tasks.forEach(task => {
     const taskDiv = document.createElement('div');
     taskDiv.className = 'task-div';
     taskDiv.textContent = task.title;
     taskDiv.dataset.id = task.id;
+
     taskDiv.addEventListener('click', () => openModal(task.id));
-    
-    const container = document.querySelector(`[data-status="${task.status}"] .tasks-container`);
-    container.appendChild(taskDiv);
+
+    const column = document.querySelector(`[data-status="${task.status}"] .tasks-container`);
+    column.appendChild(taskDiv);
   });
+
+  updateHeaderCounts();
 }
 
-// ====== Open Modal and Populate Fields ======
+// ====== Update Column Headers ======
+function updateHeaderCounts() {
+  document.getElementById('toDoText').textContent = `TODO (${tasks.filter(t => t.status === 'todo').length})`;
+  document.getElementById('doingText').textContent = `DOING (${tasks.filter(t => t.status === 'doing').length})`;
+  document.getElementById('doneText').textContent = `DONE (${tasks.filter(t => t.status === 'done').length})`;
+}
+
+// ====== Open Modal and Populate ======
 function openModal(taskId) {
   const task = tasks.find(t => t.id === taskId);
   if (!task) return;
 
-  currentTaskId = taskId;
+  currentTaskId = task.id;
   modalTitle.value = task.title;
   modalDescription.value = task.description || '';
   modalStatus.value = task.status;
@@ -48,20 +61,23 @@ function closeModal() {
 
 // ====== Save Task Updates ======
 function saveTaskUpdates() {
-  const updatedTitle = modalTitle.value.trim();
-  const updatedDescription = modalDescription.value.trim();
-  const updatedStatus = modalStatus.value;
+  const title = modalTitle.value.trim();
+  const description = modalDescription.value.trim();
+  const status = modalStatus.value;
 
-  if (!updatedTitle) return alert('Title cannot be empty.');
+  if (!title) {
+    alert('Title cannot be empty');
+    return;
+  }
 
   const taskIndex = tasks.findIndex(t => t.id === currentTaskId);
   if (taskIndex === -1) return;
 
   tasks[taskIndex] = {
     ...tasks[taskIndex],
-    title: updatedTitle,
-    description: updatedDescription,
-    status: updatedStatus
+    title,
+    description,
+    status
   };
 
   localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -73,8 +89,27 @@ function saveTaskUpdates() {
 closeModalBtn.addEventListener('click', closeModal);
 saveBtn.addEventListener('click', saveTaskUpdates);
 
-// Close modal on background click
 window.addEventListener('click', (e) => {
   if (e.target === modal) closeModal();
 });
 
+// ====== Bootstrap Sample Data ======
+function bootstrapInitialData() {
+  if (tasks.length === 0) {
+    tasks = [
+      { id: "1", title: "Launch Epic Career 🚀", description: "Apply for dev roles", status: "todo" },
+      { id: "2", title: "Conquer React⚛️", description: "", status: "todo" },
+      { id: "3", title: "Understand Databases⚙️", description: "", status: "todo" },
+      { id: "4", title: "Crush Frameworks🖼️", description: "", status: "todo" },
+      { id: "5", title: "Master JavaScript 💛", description: "ES6, DOM, events", status: "doing" },
+      { id: "6", title: "Never Give Up 🏆", description: "Daily effort counts", status: "doing" },
+      { id: "7", title: "Explore ES6 Features 🚀", description: "", status: "done" },
+      { id: "8", title: "Have fun 🥳", description: "Celebrate wins", status: "done" }
+    ];
+    localStorage.setItem('tasks', JSON.stringify(tasks));
+  }
+}
+
+// ====== Initialize ======
+bootstrapInitialData();
+renderTasks();

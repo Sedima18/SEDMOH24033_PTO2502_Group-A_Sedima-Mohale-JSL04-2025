@@ -227,6 +227,19 @@ body {
   .side-bar {
     display: none;
   }
+  
+    .card-column-main {
+    flex-direction: column;
+    min-width: auto;
+  }
+
+  @media (max-width: 600px) {
+  .modal-content {
+    width: 90%;
+    margin: 30% auto;
+  }
+}
+
 
   .card-column-main {
     flex-direction: column;

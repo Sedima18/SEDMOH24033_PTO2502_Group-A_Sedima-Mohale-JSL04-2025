@@ -15,9 +15,8 @@
       href="./assets/favicon.svg"
     />
     <title>Kanban Task Management</title>
-  </head>
-
-  <body>
+  
+<body>
     <!-- Navigation Sidebar: Contains the logo, navigation links for boards, and theme toggle. -->
     <nav class="side-bar" id="side-bar-div">
       <div id="side-logo-div">
@@ -39,7 +38,13 @@
             alt="logo-mobile"
             class="logo-mobile"
           />
-              <div class="container">
+          <h2 class="header-board-name" id="header-board-name">
+            Launch Career
+          </h2>
+        </div>
+      </header>
+
+      <div class="container">
         <main class="card-column-main">
           <!-- Task Columns: Display tasks grouped by status (TODO, DOING, DONE). -->
           <div class="column-div" data-status="todo">
@@ -78,10 +83,7 @@
               <div class="task-div">Explore ES6 Features 🚀</div>
               <div class="task-div">Have fun 🥳</div>
             </div>
-          </div>
-        </main>
-      </div>
-    </div>
+
 
     <!-- Task Modal -->
 <div id="task-modal" class="modal">
