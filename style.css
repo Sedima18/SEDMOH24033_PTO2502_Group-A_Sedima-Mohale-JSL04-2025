@@ -47,7 +47,7 @@ body {
 
 .board-btn {
   padding: 0.75rem;
-  background-color: #e0e4eb;
+  background-color: blue;
   border: none;
   border-radius: 6px;
   cursor: pointer;
@@ -55,7 +55,7 @@ body {
 }
 
 .board-btn:hover {
-  background-color: #d2d6de;
+  background-color: blue;
 }
 
 /* ===== Layout ===== */
@@ -227,7 +227,7 @@ body {
   .side-bar {
     display: none;
   }
-  
+
     .card-column-main {
     flex-direction: column;
     min-width: auto;
